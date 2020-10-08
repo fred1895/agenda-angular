@@ -10,21 +10,6 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class AgendaApiApplication {
-
-	@Bean
-	public CommandLineRunner commandLineRunner(
-			@Autowired ContatoRepository contatoRepository
-	) {
-		return args -> {
-			Contato contato = new Contato();
-			contato.setNome("Joao");
-			contato.setEmail("joao@gmail.com");
-			contato.setFavorito(true);
-
-			contatoRepository.save(contato);
-		};
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(AgendaApiApplication.class, args);
 	}
