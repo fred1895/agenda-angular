@@ -5,6 +5,8 @@ import io.github.fred1895.agendaapi.model.repository.ContatoRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Part;
@@ -27,8 +29,9 @@ public class ContatoService {
         repository.deleteById(id);
     }
 
-    public List<Contato> listarContatos() {
-        return repository.findAll();
+    public Page<Contato> listarContatos(Integer pagina, Integer tamanhoPagina) {
+        PageRequest pageRequest = PageRequest.of(pagina, tamanhoPagina);
+        return repository.findAll(pageRequest);
     }
 
     public void favoritarContato(Long id) {
